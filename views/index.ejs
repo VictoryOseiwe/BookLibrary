@@ -1,5 +1,69 @@
 <%- include("partials/header.ejs") %>
 
 <p>JUST SOME FILES FOR TESTING MY EJS TEMPLATE</p>
+<div class="container">
+    <div class="title">
+        <h1>
+            VICTORY OSEIWE'S BOOK(S)
+        </h1>
+    </div>
+    <p>
+        Tiny summary but detailed notes for each.
+        Use the ISBN number to find it from your local library or anywhere else.
+        This page will constantly update as I read more, so bookmark it if you want to check back in a few months.
+    </p>
+    <div class="sort">
+        <p>Sort by the following</p>
+        <ul>
+            <li>Title</li>
+            <li>Newest</li>
+            <li>Best</li>
+        </ul>
+    </div>
+    <hr>
 
+    <form action="/" class="formPost" id="formPost" method="post">
+        <h3>Book Tittle</h3>
+        <input type="text" name="bookTitle" id="bookTitle">
+        <h3>Book Description</h3>
+        <input type="text" name="bookDescription" id="bookDescription">
+        <h3>Book ISBN </h3>
+        <input type="text" name="isbn" id="bookTitle">
+        <p>Date Read</p>
+        <input type="date" name="dateRead" id="dateRead">
+        <p>Recommendation on a scale of 1-10</p>
+        <select name="scale" class="form-select">
+          <option value="" data-display="Select">Scale</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+
+        <button class="form-select" type="submit">Go</button>
+    </form>
+    <!-- <img src="https://covers.openlibrary.org/b/isbn/0806541229-M.jpg" alt=""> -->
+
+    <div class="response-area">
+        <% if (locals.data) { %>
+            <h1><%= data.bookTitle %></h1>
+            <p><%= data.bookDescription %></p>
+            <p>Date Read: <%= data.dateRead %></p>
+            <p>Scale: <%= data.scale %></p>
+            <% if (data.coverUrl) { %>
+                <img src="<%= data.coverUrl %>" alt="Book Cover">
+            <% } else { %>
+                <p>No cover available</p>
+            <% } %>
+        <% } %>
+
+    </div>
+
+</div>
 <%- include("partials/footer.ejs") %>
